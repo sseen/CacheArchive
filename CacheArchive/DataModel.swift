@@ -22,19 +22,16 @@ class DataModel: NSObject, NSCoding{
     }
     
     override init() {
-        name = ""
-        pass = ""
-        super.init()
     }
     
     required init(coder aDecoder: NSCoder) {
-        self.name = aDecoder.decodeObjectForKey(name) as! String
-        self.pass = aDecoder.decodeObjectForKey(pass) as! String
+        self.name = aDecoder.decodeObjectForKey(kName) as! String
+        self.pass = aDecoder.decodeObjectForKey(kPass) as! String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.name, forKey: name)
-        aCoder.encodeObject(self.pass, forKey: pass)
+        aCoder.encodeObject(self.name, forKey: kName)
+        aCoder.encodeObject(self.pass, forKey: kPass)
     }
     
     func save() {
