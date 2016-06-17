@@ -49,4 +49,23 @@ class DataModel: NSObject, NSCoding{
         }
         return nil
     }
+    
+    class func loadFileSaved() -> DataModel? {
+     
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(saveFileLocation2()) as? DataModel
+
+    }
+    
+    class func saveFileLocation2() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentDirectory = paths[0]
+        return NSURL(fileURLWithPath: documentDirectory).URLByAppendingPathComponent("savefile").path!
+    }
+
+    func saveFile() {
+        NSKeyedArchiver.archiveRootObject(self, toFile: DataModel.saveFileLocation2())
+    }
+    
+    
+    
 }
